@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{multicol} % For the two-column layout
+
+% --- PAGE & MARGIN CONFIGURATION ---
+\newcommand{\MarginTop}{1.5cm}
+\newcommand{\MarginBottom}{1.5cm}
+\newcommand{\MarginLeft}{1.5cm}
+\newcommand{\MarginRight}{1.5cm}
+\newcommand{\ColumnGap}{2cm} % Space in the middle for the fold/binding
+
+% --- STAFF CONFIGURATION ---
+\newcommand{\NumberOfStaves}{30} % Number of staves PER COLUMN     
+\newcommand{\LineSpacing}{0.15cm}     
+\newcommand{\GapBetweenStaves}{1.0cm} 
+\newcommand{\StaffThickness}{0.6pt}   
+
+\geometry{
+    a3paper,
+    landscape,
+    top=\MarginTop,
+    bottom=\MarginBottom,
+    left=\MarginLeft,
+    right=\MarginRight,
+    columnsep=\ColumnGap
+}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{multicols}{2} % Start the 2-column layout
+    \foreach \n in {1,...,\NumberOfStaves}{
+        \noindent
+        \begin{tikzpicture}
+            \foreach \i in {0,1,2,3,4}
+            {
+                \draw [line width=\StaffThickness] (0, \i*\LineSpacing) -- (\linewidth, \i*\LineSpacing);
+            }
+        \end{tikzpicture}
+        \par
+        \vspace{\GapBetweenStaves}
+    }
+\end{multicols}
+
+\end{document}
