@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{geometry}
+
+% --- MARGIN CONFIGURATION ---
+\newcommand{\MarginTop}{1.5cm}
+\newcommand{\MarginBottom}{1.5cm}
+\newcommand{\MarginLeft}{2cm}
+\newcommand{\MarginRight}{2cm}
+
+% --- STAFF CONFIGURATION ---
+\newcommand{\NumberOfStaves}{12}      
+\newcommand{\LineSpacing}{0.15cm}     % Gap between the 5 lines
+\newcommand{\GapBetweenStaves}{1.0cm} % Gap between each block of lines
+\newcommand{\StaffThickness}{0.6pt}   % Line weight
+
+% Apply the margins
+\geometry{
+    top=\MarginTop,
+    bottom=\MarginBottom,
+    left=\MarginLeft,
+    right=\MarginRight
+}
+
+\begin{document}
+\pagestyle{empty} % Removes page numbers
+
+\foreach \n in {1,...,\NumberOfStaves}{
+    \noindent
+    \begin{tikzpicture}
+        % Draw the 5 lines
+        \foreach \i in {0,1,2,3,4}
+        {
+            \draw [line width=\StaffThickness] (0, \i*\LineSpacing) -- (\textwidth, \i*\LineSpacing);
+        }
+    \end{tikzpicture}
+    \par
+    \vspace{\GapBetweenStaves}
+}
+
+\end{document}
