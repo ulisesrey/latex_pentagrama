@@ -1,21 +1,20 @@
 \documentclass{article}
 \usepackage{tikz}
 \usepackage{geometry}
-\usepackage{multicol} % For the two-column layout
+\usepackage{multicol}
 
+% --- STAFF CONFIGURATION ---
+\newcommand{\NumberOfStaves}{24}      
+\newcommand{\LineSpacing}{0.2cm}     
+\newcommand{\GapBetweenStaves}{1.25cm} 
+\newcommand{\StaffThickness}{0.5pt}   
 
 % --- MARGIN CONFIGURATION ---
 \newcommand{\MarginTop}{2cm}
 \newcommand{\MarginBottom}{2cm}
 \newcommand{\MarginLeft}{2cm}
 \newcommand{\MarginRight}{2cm}
-\newcommand{\ColumnGap}{4cm} % Space in the middle for the fold/binding
-
-% --- STAFF CONFIGURATION ---
-\newcommand{\NumberOfStaves}{30}      
-\newcommand{\LineSpacing}{0.15cm}     % Gap between the 5 lines
-\newcommand{\GapBetweenStaves}{1.1cm} % Gap between each block of lines
-\newcommand{\StaffThickness}{0.6pt}   % Line weight
+\newcommand{\ColumnGap}{4cm} 
 
 \geometry{
     a3paper,
@@ -30,7 +29,14 @@
 \begin{document}
 \pagestyle{empty}
 
-\begin{multicols}{2} % Start the 2-column layout
+% --- PARAMETER OVERLAY (Does not affect layout) ---
+\begin{tikzpicture}[remember picture, overlay]
+    \node [anchor=north west, xshift=0.5cm, yshift=-0.5cm, font=\tiny\ttfamily, opacity=0.5] 
+    at (current page.north west) 
+    {Staves: \NumberOfStaves\ | LineSpacing: \LineSpacing\ | Gap: \GapBetweenStaves\ | Thickness: \StaffThickness};
+\end{tikzpicture}
+
+\begin{multicols}{2} 
     \foreach \n in {1,...,\NumberOfStaves}{
         \noindent
         \begin{tikzpicture}
